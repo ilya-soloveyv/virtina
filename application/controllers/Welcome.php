@@ -220,4 +220,8 @@ class Welcome extends CI_Controller {
 		$this->mailgun->bounces();
 	}
 
+	public function mailgun_bounces_delete () {
+		$this->mailgun->bounces_delete();
+	}
+
 }

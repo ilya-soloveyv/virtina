@@ -24,6 +24,14 @@ class Mailgun_model extends CI_Model {
         var_dump($res);
     }
 
+    public function bounces_delete () {
+        //         ✗ curl -s --user 'api:YOUR_API_KEY' -H \
+        //   "Accept: application/json" -X \
+        //   DELETE https://api.mailgun.net/v3/YOUR_DOMAIN_NAME/bounces/a.b@abc.com
+        exec("curl -s --user 'api:".$this->config->item('mailgun_api_key')."' -H 'Accept: application/json' -X DELETE https://api.mailgun.net/v3/mailgun.virtina.ru/bounces/".$this->config->item('mailgun_mailfrom'), $res);
+        var_dump($res);
+    }
+
 }
 
 ?>
