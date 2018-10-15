@@ -1,0 +1,9 @@
+/application/config/database.php
+/application/config/config.php
+/sitemap.xml
+/.htaccess
+/.htpasswd
+/robots.txt
+/index.php
+/access.log
+/error.log
