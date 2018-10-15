@@ -1,0 +1,14 @@
+body {
+    margin-bottom: 15px;
+}
+.navbar {
+    /* margin-bottom: 16px; */
+}
+.breadcrumb {
+    border-radius: 0;
+}
+
+
+.container-catalog .card {
+    margin-bottom: 30px;
+}
