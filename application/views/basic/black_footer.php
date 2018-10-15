@@ -12,7 +12,7 @@
             +7 (499) 391-91-97
             <span class="messenger">
                 <a href="https://api.whatsapp.com/send?phone=79253919197&text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5" target="_blank"><img src="/images/whatsapp.svg" alt="whatsapp"></a>
-                <a href="viber://add?number=79253919197"><img src="/images/viber.svg" alt="viber"></a>
+                <a href="viber://add?number=79253919197"><img src="/images/purple_Purple_icon.svg" alt="viber"></a>
                 <a href="http://t.me/virtina"><img src="/images/Telegram_logo.svg" alt="telegram"></a>						
             </span>
         </div>

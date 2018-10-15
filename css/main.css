@@ -2652,13 +2652,7 @@ header .logo:hover { background-image: url("/images/logo_hover.svg"); }
 .section_black_footer .middle .title .messenger img {
 	height: 26px;
 	margin-right: 8px;
-	-webkit-filter: grayscale(100%);
-	filter: grayscale(100%);
 	transition: .25s ease-in-out;
-}
-.section_black_footer .middle .title .messenger img:hover {
-	-webkit-filter: none;
-	filter: none;
 }
 
 .section_black_footer .ya1 img {
@@ -3733,14 +3727,8 @@ header .logo:hover { background-image: url("/images/logo_hover.svg"); }
 }
 #contact .data .text ul li .messenger img {
 	height: 24px;
-	-webkit-filter: grayscale(100%);
-	filter: grayscale(100%);
 	transition: .25s ease-in-out;
 	margin-right: 5px;
-}
-#contact .data .text ul li .messenger img:hover {
-	-webkit-filter: none;
-	filter: none;
 }
 @media(max-width: 575px)
 {

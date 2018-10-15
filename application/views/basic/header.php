@@ -85,7 +85,11 @@
     <div class="menu" data-toggle="modal" data-target="#menu"></div>
     <div class="auth d-none d-md-block">Вход</div>
     <a class="phone_click d-block d-sm-none" href="tel:+74993919197">+7 (499) 391-91-97</a>
-    <a class="whatsapp" href="https://api.whatsapp.com/send?phone=79253919197&text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5" target="_blank"><img src="/images/whatsapp.svg" alt="whatsapp"></a>
+    <?php
+        if ($this->uri->segment(1) != 'contact') {
+            echo '<a class="whatsapp" href="https://api.whatsapp.com/send?phone=79253919197&text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5" target="_blank"><img src="/images/whatsapp.svg" alt="whatsapp"></a>';
+        }
+    ?>
     <div class="phone d-none d-sm-block" data-toggle="modal" data-target="#perezvon">+7 (499) 391-91-97</div>
     <div class="search">
         <div class="ico"></div>
