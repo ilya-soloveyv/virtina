@@ -9,7 +9,7 @@
     <div class="ya2">
         <div class="title">
             <div>Телефон:</div>
-            +7 (499) 391-91-97
+            <a href="tel:+74993919197">+7 (499) 391-91-97</a>
             <span class="messenger">
                 <a href="https://api.whatsapp.com/send?phone=79253919197&text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5" target="_blank"><img src="/images/whatsapp.svg" alt="whatsapp"></a>
                 <a href="viber://add?number=79253919197"><img src="/images/purple_Purple_icon.svg" alt="viber"></a>
@@ -20,7 +20,7 @@
     <div class="ya3">
         <div class="title">
             <div>Email:</div>
-            hello@virtina.ru
+            <a href="mailto:hello@virtina.ru">hello@virtina.ru</a>
         </div>
     </div>
     <div class="ya4">

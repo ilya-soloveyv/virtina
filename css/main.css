@@ -3722,6 +3722,9 @@ header .logo:hover { background-image: url("/images/logo_hover.svg"); }
 	font-size: 14px;
 	font-weight: 300;
 }
+#contact .data .text ul li .desc a {
+	color: #333;
+}
 #contact .data .text ul li .messenger {
 	padding-top: 10px;
 }
