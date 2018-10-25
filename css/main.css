@@ -471,6 +471,12 @@ header {
     -moz-transition: all 0.4s ease-in-out;
     transition: all 0.4s ease-in-out;
 }
+header.greybg {
+	background-color: rgba(245,245,245,.9);
+}
+header.greybg.open_menu {
+	background: none !important;
+}
 @media(max-width: 575px)
 {
 	header {
@@ -846,6 +852,7 @@ header.open_menu .auth { background-image: url("/images/user_white.svg"); color:
 header.open_menu .phone { background-image: url("/images/phone_white.svg"); color: #FFF; }
 
 header .logo:hover { background-image: url("/images/logo_hover.svg"); }
+
 
 
 

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-define('VIRTINA_VERSION', 136);
+define('VIRTINA_VERSION', 137);
 /*
 |--------------------------------------------------------------------------
 | Display Debug backtrace

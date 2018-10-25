@@ -2,6 +2,8 @@
     $.fn.fp = function(data) {
 
         fp_speed = 550
+        // fp_speed = 2000
+        fp_delay = true
         fp = this
         fp_move = fp.find('.move')
         sections = fp.find('.section')
@@ -35,14 +37,14 @@
         }
 
         function move_up () {
-            if (section_active.prev().length) {
+            if (section_active.prev().length && fp_delay) {
                 next_section = section_active.prev()
                 move()
             }
         }
 
         function move_down () {
-            if (section_active.next().length) {
+            if (section_active.next().length && fp_delay) {
                 next_section = section_active.next()
                 move()
             }
@@ -86,65 +88,69 @@
         }
 
         function moveTo () {
-            let temp = section_active.attr('id')
-            // Изменение цветовой схемы шапки сайта
-            if (temp in data.before.header.darkClass) {
-                if (data.before.header.darkClass[temp]) { $("header").addClass("dark") }
-                else { $("header").removeClass("dark") }
-            }
-            // end
-            // Добавлять в шапку класс dom_dommenu для дополнительной менюшки
-            if (data.before.header.dopmenu && temp in data.before.header.dopmenu) {
-                $("header").addClass("dom_dommenu")
-                
-            } else {
-                $("header").removeClass("dom_dommenu")
-            }
-            // end
-            // Прятать шапку сайта
-            if (data.before.header.hidden) {
-                if (temp in data.before.header.hidden) { $("header").css({top: "-75px"}) }
-                else { $("header").css({top: 0}) }
-            }
-            // end
-            // Изменение цветовой схемы правого меню
-            if (data.before.myMenu) {
-                if (temp in data.before.myMenu.darkClass) {
-                    if (data.before.myMenu.darkClass[temp]) { $("#myMenu").addClass("dark") }
-                    else { $("#myMenu").removeClass("dark") }
+            if (fp_delay) {
+                fp_delay = false
+                let temp = section_active.attr('id')
+                // Изменение цветовой схемы шапки сайта
+                if (temp in data.before.header.darkClass) {
+                    if (data.before.header.darkClass[temp]) { $("header").addClass("dark") }
+                    else { $("header").removeClass("dark") }
                 }
+                // end
+                // Добавлять в шапку класс dom_dommenu для дополнительной менюшки
+                if (data.before.header.dopmenu && temp in data.before.header.dopmenu) {
+                    $("header").addClass("dom_dommenu")
+                    
+                } else {
+                    $("header").removeClass("dom_dommenu")
+                }
+                // end
+                // Прятать шапку сайта
+                if (data.before.header.hidden) {
+                    if (temp in data.before.header.hidden) { $("header").css({top: "-75px"}) }
+                    else { $("header").css({top: 0}) }
+                }
+                // end
+                // Изменение цветовой схемы правого меню
+                if (data.before.myMenu) {
+                    if (temp in data.before.myMenu.darkClass) {
+                        if (data.before.myMenu.darkClass[temp]) { $("#myMenu").addClass("dark") }
+                        else { $("#myMenu").removeClass("dark") }
+                    }
+                }
+                // end
+                // Прятать правое меню
+                if (data.before.myMenu) {
+                    if (temp in data.before.myMenu.hidden) { $("#myMenu").removeClass("min") }
+                    else { $("#myMenu").addClass("min") }
+                }
+                // end
+                // Выделяем активный пункт меню
+                if (data.before.myMenu) {
+                    if (temp in data.before.myMenu.active) { $("#myMenu li").removeClass("active"); $("#myMenu li[data-section='" + data.before.myMenu.active[temp] + "']").addClass("active") }
+                    else { $("#myMenu li").removeClass("active") }
+                }
+                // end
+                let offset = section_active.position();
+    
+                // anime({
+                //     targets: '#fp .move',
+                //     translateY: -offset.top,
+                //     easing: 'easeOutExpo'
+                // })
+    
+                let fp_move_top2 = section_active.index()*$(window).height()
+                fp_move.transition({ y: -fp_move_top2 }, fp_speed, function () {
+                    location.hash = section_active.attr('id')
+                    $(document).scrollTop(fp_move_top2)
+                    fp_delay = true
+                });
+    
+                // fp_move.stop().animate({top: -offset.top}, fp_speed, function() {
+                    // location.hash = section_active.attr('id')
+                // })
+                return false;
             }
-            // end
-            // Прятать правое меню
-            if (data.before.myMenu) {
-                if (temp in data.before.myMenu.hidden) { $("#myMenu").removeClass("min") }
-                else { $("#myMenu").addClass("min") }
-            }
-            // end
-            // Выделяем активный пункт меню
-            if (data.before.myMenu) {
-                if (temp in data.before.myMenu.active) { $("#myMenu li").removeClass("active"); $("#myMenu li[data-section='" + data.before.myMenu.active[temp] + "']").addClass("active") }
-                else { $("#myMenu li").removeClass("active") }
-            }
-            // end
-            let offset = section_active.position();
-
-            // anime({
-            //     targets: '#fp .move',
-            //     translateY: -offset.top,
-            //     easing: 'easeOutExpo'
-            // })
-
-            let fp_move_top2 = section_active.index()*$(window).height()
-            fp_move.stop().transition({ y: -fp_move_top2 }, fp_speed, function () {
-                location.hash = section_active.attr('id')
-                $(document).scrollTop(fp_move_top2)
-            });
-
-            // fp_move.stop().animate({top: -offset.top}, fp_speed, function() {
-                // location.hash = section_active.attr('id')
-            // })
-            return false;
         }
 
         $('#myMenu li a').on('click', function () {
