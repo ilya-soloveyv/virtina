@@ -316,7 +316,7 @@
   }
 }
 .tingle-moreText .tingle-modal__close {
-  position: fixed;
+  position: absolute;
   top: 32px;
   right: 48px;
   z-index: 1000;
