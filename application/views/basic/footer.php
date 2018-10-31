@@ -160,7 +160,7 @@
 <script src="/js/jquery.arcticmodal-0.3.min.js"></script>
 <script src="/js/tingle.js"></script>
 <script src="/js/wheel-indicator.js"></script>
-<script src="/js/jquery.transit.min.js"></script>
+<!-- <script src="/js/jquery.transit.min.js"></script> -->
 <script src="/js/fp.js?ver=<?php echo VIRTINA_VERSION; ?>"></script>
 
 

@@ -132,11 +132,29 @@
                 }
                 // end
 
-                let offset = section_active.position()
-                fp_move.animate({top: -offset.top}, fp_speed, function() {
+                
+                let fp_move_top2 = section_active.index()*$(window).height()
+                fp_move.css({
+                    '-webkit-transform': 'translate3d(0, ' + -fp_move_top2 + 'px, 0px)',
+                    '-webkit-transition': '-webkit-transform .5s',
+                });
+                setTimeout(function(){
                     location.hash = section_active.attr('id')
+                    // $(document).scrollTop('#'+section_active.attr('id'))
                     fp_check = true
-                })
+                }, fp_speed);
+
+                // let offset = section_active.position()
+                // fp_move.animate({top: -offset.top}, fp_speed, function() {
+                //     location.hash = section_active.attr('id')
+                //     fp_check = true
+                // })
+
+                // let offset = section_active.position()
+                // fp_move.animate({top: -offset.top}, fp_speed, function() {
+                //     location.hash = section_active.attr('id')
+                //     fp_check = true
+                // })
             }
             return false;
         }
@@ -153,14 +171,14 @@
         });
 
         fp.swipe( {
-            swipe: function(event, direction, distance, duration, fingerCount, fingerData) {
-                if (direction == 'down') {
-                    move_up()
-                } else if (direction == 'up') {
-                    move_down()
-                }
+            swipeDown: function(event, direction, distance, duration, fingerCount, fingerData) {
+                move_up()
             },
-            threshold:0
+            swipeUp: function(event, direction, distance, duration, fingerCount, fingerData) {
+                move_down()
+            },
+            threshold:25,
+            preventDefaultEvents: false
         });
 
     }
