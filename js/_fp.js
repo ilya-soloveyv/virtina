@@ -1,9 +1,131 @@
+var BrowserDetect = { 
+  init: function () { 
+  this.browser = this.searchString(this.dataBrowser) || "An unknown browser"; 
+  this.version = this.searchVersion(navigator.userAgent) || this.searchVersion(navigator.appVersion) || "an unknown version"; 
+  this.OS = this.searchString(this.dataOS) || "an unknown OS"; 
+  }, 
+  searchString: function (data) { 
+  for (var i=0;i<data.length;i++) { 
+  var dataString = data[i].string; 
+  var dataProp = data[i].prop; 
+  this.versionSearchString = data[i].versionSearch || data[i].identity; 
+  if (dataString) { 
+  if (dataString.indexOf(data[i].subString) != -1) 
+  return data[i].identity; 
+  } 
+  else if (dataProp) 
+  return data[i].identity; 
+  } 
+  }, 
+  searchVersion: function (dataString) { 
+  var index = dataString.indexOf(this.versionSearchString); 
+  if (index == -1) return; 
+  return parseFloat(dataString.substring(index+this.versionSearchString.length+1)); 
+  }, 
+  dataBrowser: [ 
+  { 
+  string: navigator.userAgent, 
+  subString: "Chrome", 
+  identity: "Chrome" 
+  }, 
+  { string: navigator.userAgent, 
+  subString: "OmniWeb", 
+  versionSearch: "OmniWeb/", 
+  identity: "OmniWeb" 
+  }, 
+  { 
+  string: navigator.vendor, 
+  subString: "Apple", 
+  identity: "Safari", 
+  versionSearch: "Version" 
+  }, 
+  { 
+  prop: window.opera, 
+  identity: "Opera", 
+  versionSearch: "Version" 
+  }, 
+  { 
+  string: navigator.vendor, 
+  subString: "iCab", 
+  identity: "iCab" 
+  }, 
+  { 
+  string: navigator.vendor, 
+  subString: "KDE", 
+  identity: "Konqueror" 
+  }, 
+  { 
+  string: navigator.userAgent, 
+  subString: "Firefox", 
+  identity: "Firefox" 
+  }, 
+  { 
+  string: navigator.vendor, 
+  subString: "Camino", 
+  identity: "Camino" 
+  }, 
+  {  
+  /* For Newer Netscapes (6+) */ 
+  string: navigator.userAgent, 
+  subString: "Netscape", 
+  identity: "Netscape" 
+  }, 
+  { 
+  string: navigator.userAgent, 
+  subString: "MSIE", 
+  identity: "Internet Explorer", 
+  versionSearch: "MSIE" 
+  }, 
+  { 
+  string: navigator.userAgent, 
+  subString: "Gecko", 
+  identity: "Mozilla", 
+  versionSearch: "rv" 
+  }, 
+  {  
+  /* For Older Netscapes (4-) */ 
+  string: navigator.userAgent, 
+  subString: "Mozilla", 
+  identity: "Netscape", 
+  versionSearch: "Mozilla" 
+  } 
+  ], 
+  dataOS : [ 
+  { 
+  string: navigator.platform, 
+  subString: "Win", 
+  identity: "Windows" 
+  }, 
+  { 
+  string: navigator.platform, 
+  subString: "Mac", 
+  identity: "Mac" 
+  }, 
+  { 
+  string: navigator.userAgent, 
+  subString: "iPhone", 
+  identity: "iPhone/iPod" 
+  }, 
+  { 
+  string: navigator.platform, 
+  subString: "Linux", 
+  identity: "Linux" 
+  } 
+  ] 
+
+}; 
+BrowserDetect.init(); 
+
+// document.getElementById("name").innerHTML=BrowserDetect.browser; 
+// document.getElementById("version").innerHTML=BrowserDetect.version; 
+// document.getElementById("os").innerHTML=BrowserDetect.OS 
+
 (function( $ ){
     $.fn.fp = function(data) {
 
         fp_speed = 550
+        fp_delay = true
         fp = this
-        fp_check = true
         fp_move = fp.find('.move')
         sections = fp.find('.section')
         resize()
@@ -26,6 +148,7 @@
         
         $(window).resize(function(){
             resize()
+            moveTo()
         })
 
         function resize () {
@@ -34,16 +157,15 @@
             sections.height(window_height)
         }
 
-
         function move_up () {
-            if (fp_check && section_active.prev().length) {
+            if (section_active.prev().length && fp_delay) {
                 next_section = section_active.prev()
                 move()
             }
         }
 
         function move_down () {
-            if (fp_check && section_active.next().length) {
+            if (section_active.next().length && fp_delay) {
                 next_section = section_active.next()
                 move()
             }
@@ -87,9 +209,8 @@
         }
 
         function moveTo () {
-            if (fp_check) {
-                fp_check = false
-
+            if (fp_delay) {
+                fp_delay = false
                 let temp = section_active.attr('id')
                 // Изменение цветовой схемы шапки сайта
                 if (temp in data.before.header.darkClass) {
@@ -131,15 +252,46 @@
                     else { $("#myMenu li").removeClass("active") }
                 }
                 // end
+                let offset = section_active.position();
+    
+                // anime({
+                //     targets: '#fp .move',
+                //     translateY: -offset.top,
+                //     easing: 'easeOutExpo'
+                // })
+    
+                let fp_move_top2 = section_active.index()*$(window).height()
+                // fp_move.transition({ y: -fp_move_top2 }, fp_speed, function () {
+                //     location.hash = section_active.attr('id')
+                //     $(document).scrollTop(fp_move_top2)
+                //     fp_delay = true
+                // });
 
-                let offset = section_active.position()
-                fp_move.animate({top: -offset.top}, fp_speed, function() {
+                console.log(BrowserDetect.browser)
+
+                fp_move.css({
+                    '-webkit-transform': 'translate3d(0, ' + -fp_move_top2 + 'px, 0px)',
+                    '-webkit-transition': '-webkit-transform .55s linear',
+                });
+                setTimeout(function(){
                     location.hash = section_active.attr('id')
-                    fp_check = true
-                })
+                    $(document).scrollTop(fp_move_top2)
+                    fp_delay = true
+                }, 550);
+    
+                // fp_move.stop().animate({top: -offset.top}, fp_speed, function() {
+                    // location.hash = section_active.attr('id')
+                // })
+                return false;
             }
-            return false;
         }
+
+        $('#myMenu li a').on('click', function () {
+            let temp = $(this).parent().attr('data-section')
+            section_active = $('#'+temp)
+            moveTo()
+            return false
+        })
 
         var indicator = new WheelIndicator({
             elem: document.querySelector('#fp'),
@@ -153,16 +305,14 @@
         });
 
         fp.swipe( {
-            swipe: function(event, direction, distance, duration, fingerCount, fingerData) {
-                if (direction == 'down') {
-                    move_up()
-                } else if (direction == 'up') {
-                    move_down()
-                }
+            swipeDown: function(event, direction, distance, duration, fingerCount, fingerData) {
+                move_up()
             },
-            threshold:0
+            swipeUp: function(event, direction, distance, duration, fingerCount, fingerData) {
+                move_down()
+            },
+            threshold:25,
+            preventDefaultEvents: false
         });
-
     }
 })( jQuery );
-// $('#fp').fp()
