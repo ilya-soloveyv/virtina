@@ -1,58 +1,84 @@
+var fp = new fullpage('#fp', {
+    licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE',
+    verticalCentered: false,
+    scrollingSpeed: 550,
+    anchors: ['section1', 'section2', 'section3', 'section4', 'section5', 'section6', 'section7', 'section8', 'section9', 'section10'],
+    fixedElements: '.modal, .tingle-modal',
+    onLeave: function(index, nextIndex, direction) {
+
+        var section = $("."+nextIndex.anchor)
+
+        var headerDark = Number(section.attr('data-headerDark'))
+        var hiddenHeader = Number(section.attr('data-hiddenHeader'))
+        var menuDark = Number(section.attr('data-menuDark'))
+        var hiddenMenu = Number(section.attr('data-hiddenMenu'))
+        var menuActive = Number(section.attr('data-menuActive'))
+
+        if (headerDark) {
+            $("header").addClass("dark")
+        } else {
+            $("header").removeClass("dark")
+        }
+
+        if (hiddenHeader) {
+            $("header").css({top: "-75px"})
+        } else {
+            $("header").css({top: 0})
+        }
+
+        if (menuDark) {
+            $("#myMenu").addClass("dark")
+        } else {
+            $("#myMenu").removeClass("dark")
+        }
+
+        if (hiddenMenu) {
+            $("#myMenu").addClass("min")
+        } else {
+            $("#myMenu").removeClass("min")
+        }
+
+        $("#myMenu li").not(':eq('+ menuActive+')').removeClass('active')
+        $("#myMenu li").eq(menuActive).addClass('active')
+
+    }
+});
+
+var indicator = new WheelIndicator({
+    elem: document.querySelector('#fp'),
+    callback: function(e){
+        if (e.direction == 'up') {
+            fp.moveSectionUp();
+            return false;
+        } else if (e.direction == 'down') {
+            fp.moveSectionDown();
+            return false;
+        }
+    }
+});
+
+$('#fp').swipe( {
+    swipe: function(event, direction, distance, duration, fingerCount, fingerData) {
+        if (direction == 'down') {
+            fp.moveSectionUp();
+            console.log(1);
+        } else if (direction == 'up') {
+            fp.moveSectionDown();
+            console.log(2);
+        }
+    },
+    threshold:0,
+    preventDefaultEvents: false
+});
+
+
+
+
 /* Слоган на главной страницу */
 $(document).ready(function(){
     var h1_pt = $('h1').position();
     $('h1').animate({"opacity":1, "padding-top": "125px"},2000);
 });
-
-$('#fp').fp({
-    before: {
-        header: {
-            darkClass: {
-                section1: false,
-                section2: true,
-                section3: true,
-                section4: false,
-                section5: false,
-                section6: true,
-                section7: false,
-                section8: true,
-                section9: true,
-                section10: false
-            },
-            hidden: {
-                section10: true
-            }
-        },
-        myMenu: {
-            darkClass: {
-                section1: false,
-                section2: true,
-                section3: true,
-                section4: false,
-                section5: false,
-                section6: true,
-                section7: false,
-                section8: true,
-                section9: true,
-                section10: false
-            },
-            hidden: {
-                section1: false
-            },
-            active: {
-                section1: 'section1',
-                section2: 'section2',
-                section3: 'section3',
-                section4: 'section4',
-                section5: 'section5',
-                section6: 'section6',
-                section7: 'section6',
-                section8: 'section6',
-                section9: 'section9'
-            }
-        }
-    }
-})
 
 
 // section1

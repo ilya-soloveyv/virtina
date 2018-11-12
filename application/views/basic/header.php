@@ -15,7 +15,8 @@
     <link href="/css/owl.theme.default.min.css" rel="stylesheet" type="text/css">
     <link href="/css/animate.min.css" rel="stylesheet" type="text/css">
     <link href="/css/tingle.css?ver=<?php echo VIRTINA_VERSION; ?>" rel="stylesheet" type="text/css">
-    <link href="/css/fp.css?ver=<?php echo VIRTINA_VERSION; ?>" rel="stylesheet" type="text/css">
+    <!-- <link href="/css/fp.css" rel="stylesheet" type="text/css"> -->
+    <link href="/css/fullpage.css" rel="stylesheet" type="text/css">
     <link href="/css/jquery.arcticmodal-0.3.css" rel="stylesheet" type="text/css">
     <link href="/css/main.css?ver=<?php echo VIRTINA_VERSION; ?>" rel="stylesheet">
     <link href="/css/page_welcome.css?ver=<?php echo VIRTINA_VERSION; ?>" rel="stylesheet">
