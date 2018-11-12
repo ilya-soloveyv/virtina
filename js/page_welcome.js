@@ -57,14 +57,20 @@ var indicator = new WheelIndicator({
     }
 });
 
+var fp_swipe_check = true;
 $('#fp').swipe( {
     swipe: function(event, direction, distance, duration, fingerCount, fingerData) {
-        if (direction == 'down') {
-            fp.moveSectionUp();
-            console.log(1);
-        } else if (direction == 'up') {
-            fp.moveSectionDown();
-            console.log(2);
+        console.log(fp_swipe_check);
+        if (fp_swipe_check) {
+            if (direction == 'down') {
+                fp_swipe_check = false;
+                setTimeout("fp_swipe_check = true", 600);
+                fp.moveSectionUp();
+            } else if (direction == 'up') {
+                fp_swipe_check = false;
+                setTimeout("fp_swipe_check = true", 600);
+                fp.moveSectionDown();
+            }
         }
     },
     threshold:0,
