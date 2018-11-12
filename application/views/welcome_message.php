@@ -1,5 +1,16 @@
 <?php $this->load->view('basic/header'); ?>
 
+<div id="preloader">
+    <div class="l"></div>
+    <div class="r"></div>
+    <div id="loader">
+        <img src="/images/logo.png">
+        <div id="perc">
+            <div id="full"></div>
+        </div>
+    </div>
+</div>    
+
 <ul id="myMenu">
     <li data-section="section1" class="active"><a href="#section1"><span class="line"></span><span class="number">01</span><span class="title">Главная</span></a></li>
     <li data-section="section2"><a href="#section2"><span class="line"></span><span class="number">02</span><span class="title">О проекте</span></a></li>

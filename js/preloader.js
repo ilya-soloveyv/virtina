@@ -6,18 +6,18 @@ var perc_display = document.getElementById("full")
 var loader = document.getElementById("loader")
 
 if (preloader != null) {
-	if (getCookie("preloader") != 1) {
+	// if (getCookie("preloader") != 1) {
 		for (var i = 0; i < images_total_count; i++) {
 			image_clone = new Image();
 			image_clone.onload = image_loaded;
 			image_clone.onerror = image_loaded;
 			image_clone.src = images[i].src;
 		}	
-	}
-	else {
-		preloader.classList.add('done');
-		document.body.classList.remove('hidden');
-	}
+	// }
+	// else {
+		// preloader.classList.add('done');
+		// document.body.classList.remove('hidden');
+	// }
 
 	function getCookie(name) {
 		var matches = document.cookie.match(new RegExp(

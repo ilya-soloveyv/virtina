@@ -64,11 +64,11 @@ $('#fp').swipe( {
         if (fp_swipe_check) {
             if (direction == 'down') {
                 fp_swipe_check = false;
-                setTimeout("fp_swipe_check = true", 1000);
+                setTimeout("fp_swipe_check = true", 750);
                 fp.moveSectionUp();
             } else if (direction == 'up') {
                 fp_swipe_check = false;
-                setTimeout("fp_swipe_check = true", 1000);
+                setTimeout("fp_swipe_check = true", 750);
                 fp.moveSectionDown();
             }
         }

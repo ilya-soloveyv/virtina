@@ -25,23 +25,6 @@
 </head>
 <body oncontextmenu="return false" oncopy="return false;" oncontextmenu="return false" onselectstart="return false;">
 
-<?php
-    if (isset($this->data['preload']) && $this->data['preload'] === true && (get_cookie("preloader") != 1)) {
-        echo '
-            <div id="preloader">
-                <div class="l"></div>
-                <div class="r"></div>
-                <div id="loader">
-                    <img src="/images/logo.png">
-                    <div id="perc">
-                        <div id="full"></div>
-                    </div>
-                </div>
-            </div>    
-        ';
-    }
-?>
-
 <header>
     <a href="/" class="logo"></a>
     <?php
