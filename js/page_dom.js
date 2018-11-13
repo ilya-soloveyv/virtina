@@ -74,15 +74,22 @@ var fp = new fullpage('#fp', {
     }
 });
 
+var fp_scroll_check = true;
 var indicator = new WheelIndicator({
     elem: document.querySelector('#fp'),
     callback: function(e){
-        if (e.direction == 'up') {
-            fp.moveSectionUp();
-            return false;
-        } else if (e.direction == 'down') {
-            fp.moveSectionDown();
-            return false;
+        if (fp_scroll_check) {
+            if (e.direction == 'up') {
+                fp_scroll_check = false;
+                setTimeout("fp_scroll_check = true", 750);
+                fp.moveSectionUp();
+                return false;
+            } else if (e.direction == 'down') {
+                fp_scroll_check = false;
+                setTimeout("fp_scroll_check = true", 750);
+                fp.moveSectionDown();
+                return false;
+            }    
         }
     }
 });

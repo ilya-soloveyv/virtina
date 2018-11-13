@@ -321,11 +321,11 @@
         */
         function setMouseWheelScrolling(value){
             if(value){
-                addMouseWheelHandler();
-                addMiddleWheelHandler();
+                // addMouseWheelHandler();
+                // addMiddleWheelHandler();
             }else{
-                removeMouseWheelHandler();
-                removeMiddleWheelHandler();
+                // removeMouseWheelHandler();
+                // removeMiddleWheelHandler();
             }
         }
 

@@ -155,7 +155,7 @@
 <script src="/js/scrolloverflow.min.js"></script>
 <script src="/js/jquery.mousewheel.js"></script>
 <script src="/js/owl.carousel.min.js"></script>
-<script src="/js/fullpage.js"></script>
+<script src="/js/fullpage.js?ver=<?php echo VIRTINA_VERSION; ?>"></script>
 <script src="/js/jquery.touchSwipe.min.js"></script>
 <script src="/js/jquery.reel.js"></script>
 <script src="/js/jquery.arcticmodal-0.3.min.js"></script>
