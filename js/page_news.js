@@ -20,7 +20,7 @@ function getNewActive()
     }
     // console.log(arr);
 }
-$("header, #myMenu").addClass("dark");
+$("header, #myMenu").addClass("dark whitebg");
 getNewActive();
 $(document).on("mouseenter", "#news .r ul li", function(){
     $("#news .r ul li").removeClass("active");

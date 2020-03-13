@@ -15,7 +15,8 @@
     <link href="/css/owl.theme.default.min.css" rel="stylesheet" type="text/css">
     <link href="/css/animate.min.css" rel="stylesheet" type="text/css">
     <link href="/css/tingle.css?ver=<?php echo VIRTINA_VERSION; ?>" rel="stylesheet" type="text/css">
-    <link href="/css/fp.css?ver=<?php echo VIRTINA_VERSION; ?>" rel="stylesheet" type="text/css">
+    <!-- <link href="/css/fp.css" rel="stylesheet" type="text/css"> -->
+    <link href="/css/fullpage.css" rel="stylesheet" type="text/css">
     <link href="/css/jquery.arcticmodal-0.3.css" rel="stylesheet" type="text/css">
     <link href="/css/main.css?ver=<?php echo VIRTINA_VERSION; ?>" rel="stylesheet">
     <link href="/css/page_welcome.css?ver=<?php echo VIRTINA_VERSION; ?>" rel="stylesheet">
@@ -23,23 +24,6 @@
     <link href="/css/page_dom.css?ver=<?php echo VIRTINA_VERSION; ?>" rel="stylesheet">
 </head>
 <body oncontextmenu="return false" oncopy="return false;" oncontextmenu="return false" onselectstart="return false;">
-
-<?php
-    if (isset($this->data['preload']) && $this->data['preload'] === true && (get_cookie("preloader") != 1)) {
-        echo '
-            <div id="preloader">
-                <div class="l"></div>
-                <div class="r"></div>
-                <div id="loader">
-                    <img src="/images/logo.png">
-                    <div id="perc">
-                        <div id="full"></div>
-                    </div>
-                </div>
-            </div>    
-        ';
-    }
-?>
 
 <header>
     <a href="/" class="logo"></a>

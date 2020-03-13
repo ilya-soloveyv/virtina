@@ -15,30 +15,4 @@
 	position: relative;
 	overflow: hidden;
 }
-#fp .section h2 {
-	font-size: 14px;
-	line-height: 15px;
-	text-transform: uppercase;
-	top: 75px;
-	padding: 0 0 0 45px;
-	font-family: 'Open Sans', sans-serif;
-	font-weight: 700;
-	color: #161616;
-	position: absolute;
-	z-index: 2;
-}
-@media(max-width: 575px)
-{
-	#fp .section h2 {
-		top: 55px;
-	}
-}
-#fp .section h2::before {
-	content: '';
-	position: absolute;
-	left: 0;
-	top: 7px;
-	width: 30px;
-	height: 1px;
-	background-color: #161616;
-}
+

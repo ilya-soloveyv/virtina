@@ -26,53 +26,99 @@ function preloader2_image_loaded () {
 
 
 
-$('#fp').fp({
-    before: {
-        header: {
-            darkClass: {
-                dom1: false,
-                dom2: false,
-                dom3: true,
-                dom4: true,
-                dom5: true,
-                dom6: true,
-                dom7: true,
-                dom8: false
-            },
-            hidden: {
-                dom8: true
-            },
-            dopmenu: {
-                dom1: true
-            }
-        },
-        myMenu: {
-            darkClass: {
-                dom1: false,
-                dom2: false,
-                dom3: true,
-                dom4: true,
-                dom5: true,
-                dom6: true,
-                dom7: true,
-                dom8: false
-            },
-            hidden: {
-                dom1: false
-            },
-            active: {
-                dom1: 'dom1',
-                dom2: 'dom2',
-                dom3: 'dom3',
-                dom4: 'dom4',
-                dom5: 'dom5',
-                dom6: 'dom6',
-                dom7: 'dom7',
-                dom8: 'dom8'
-            }
+
+
+var fp = new fullpage('#fp', {
+    licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE',
+    verticalCentered: false,
+    scrollingSpeed: 550,
+    anchors: ['dom1', 'dom2', 'dom3', 'dom4', 'dom5', 'dom6', 'dom7', 'dom8'],
+    fixedElements: '.modal, .tingle-modal',
+    onLeave: function(index, nextIndex, direction) {
+
+        var section = $("."+nextIndex.anchor)
+
+        var headerDark = Number(section.attr('data-headerDark'))
+        var hiddenHeader = Number(section.attr('data-hiddenHeader'))
+        var menuDark = Number(section.attr('data-menuDark'))
+        var hiddenMenu = Number(section.attr('data-hiddenMenu'))
+        var menuActive = Number(section.attr('data-menuActive'))
+
+        if (headerDark) {
+            $("header").addClass("dark")
+        } else {
+            $("header").removeClass("dark")
+        }
+
+        if (hiddenHeader) {
+            $("header").css({top: "-75px"})
+        } else {
+            $("header").css({top: 0})
+        }
+
+        if (menuDark) {
+            $("#myMenu").addClass("dark")
+        } else {
+            $("#myMenu").removeClass("dark")
+        }
+
+        if (hiddenMenu) {
+            $("#myMenu").addClass("min")
+        } else {
+            $("#myMenu").removeClass("min")
+        }
+
+        $("#myMenu li").not(':eq('+ menuActive+')').removeClass('active')
+        $("#myMenu li").eq(menuActive).addClass('active')
+
+    }
+});
+
+var fp_scroll_check = true;
+var indicator = new WheelIndicator({
+    elem: document.querySelector('#fp'),
+    callback: function(e){
+        if (fp_scroll_check) {
+            if (e.direction == 'up') {
+                fp_scroll_check = false;
+                setTimeout("fp_scroll_check = true", 750);
+                fp.moveSectionUp();
+                return false;
+            } else if (e.direction == 'down') {
+                fp_scroll_check = false;
+                setTimeout("fp_scroll_check = true", 750);
+                fp.moveSectionDown();
+                return false;
+            }    
         }
     }
-})
+});
+
+var fp_swipe_check = true;
+$('#fp').swipe( {
+    swipe: function(event, direction, distance, duration, fingerCount, fingerData) {
+        console.log(fp_swipe_check);
+        if (fp_swipe_check) {
+            if (direction == 'down') {
+                fp_swipe_check = false;
+                setTimeout("fp_swipe_check = true", 750);
+                fp.moveSectionUp();
+            } else if (direction == 'up') {
+                fp_swipe_check = false;
+                setTimeout("fp_swipe_check = true", 750);
+                fp.moveSectionDown();
+            }
+        }
+    },
+    threshold:0,
+    preventDefaultEvents: false
+});
+
+
+
+
+
+
 
 
 window.addEventListener('hashchange', function(e) {

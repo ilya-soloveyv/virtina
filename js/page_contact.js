@@ -1,4 +1,4 @@
-$("header, #myMenu").addClass("dark");
+$("header, #myMenu").addClass("dark greybg");
 
 function initMap() {
     // Styles a map in night mode.
